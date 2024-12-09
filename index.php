@@ -31,6 +31,7 @@ $product = $pdo->query('SELECT * FROM product')->fetchAll(PDO::FETCH_ASSOC);
             <td><?=$prod['name']?></td>
             <td><?=$prod['price']?></td>
             <td><?=$prod['article']?></td>
+            <td><a href="admin/rec.php?id=<?=$prod['id']?>">Информация о поступлении</a></td>
         </tr>
     <?php endforeach;?>
     </tbody>
