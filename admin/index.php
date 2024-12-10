@@ -1,8 +1,12 @@
 <?php
 /** @var PDO $pdo */
 $pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
-$id= $_GET['id'];
-$receipts = $pdo->query('SELECT * FROM receipts WHERE product_id = ' . $id)->fetch(PDO::FETCH_ASSOC);
+$id = $_GET['id'];
+$receipts = $pdo->query("SELECT receipts.*, product.name AS product
+FROM receipts
+JOIN product ON receipts.product_id = product.id WHERE receipts.id =" . $id)
+    ->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,6 +23,7 @@ $receipts = $pdo->query('SELECT * FROM receipts WHERE product_id = ' . $id)->fet
     <thead>
     <tr>
         <td>№</td>
+        <td>Товар</td>
         <td>Дата</td>
         <td>Количество</td>
     </tr>
@@ -26,9 +31,9 @@ $receipts = $pdo->query('SELECT * FROM receipts WHERE product_id = ' . $id)->fet
     <tbody>
         <tr>
             <td><?=$receipts['id']?></td>
+            <td><?=$receipts['product']?></td>
             <td><?=$receipts['date']?></td>
             <td><?=$receipts['quantity']?></td>
-            <td><a href="edit.php?id=<?=$receipts['id']?>"><button>Изменить</button></a></td>
         </tr>
     </tbody>
 </table>
