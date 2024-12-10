@@ -29,14 +29,16 @@ JOIN product ON receipts.product_id = product.id WHERE receipts.id =" . $id)
     </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><?=$receipts['id']?></td>
-            <td><?=$receipts['product']?></td>
-            <td><?=$receipts['date']?></td>
-            <td><?=$receipts['quantity']?></td>
-        </tr>
+    <?php foreach ($receipts as $receipt): ?>
+    <tr>
+        <td><?=$receipts['id']?></td>
+        <td><?=$receipts['product']?></td>
+        <td><?=$receipts['date']?></td>
+        <td><?=$receipts['quantity']?></td>
+    </tr>
+    <?php endforeach; ?>
     </tbody>
 </table>
-<a href="create_rec.php"><button>Добавить</button></a>
+<a href="receipts/create.php"><button>Добавить</button></a>
 </body>
 </html>

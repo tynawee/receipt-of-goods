@@ -8,4 +8,4 @@ $article = $_POST['article'];
 
 $pdo->query("INSERT INTO product(name, price, article) VALUES ('$name', '$price', '$article')");
 
-header('Location: /index.php');
+header('Location: /admin/index.php');

@@ -1,8 +1,7 @@
 <?php
 /** @var PDO $pdo */
 $pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
-$product_id = $_GET['product'];
-$receipts = $pdo->query('SELECT * FROM receipts WHERE product_id = ' . $product_id)->fetchAll(PDO::FETCH_ASSOC);
+$product = $pdo->query('SELECT * FROM product')->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -16,7 +15,7 @@ $receipts = $pdo->query('SELECT * FROM receipts WHERE product_id = ' . $product_
 </head>
 <body>
 <h1>Добавить поступление</h1>
-<form action="action/store_rec.php" method="post">
+<form action="action/store.php" method="post">
     <input type="hidden" name="id" id="id">
     <p>Дата</p>
     <input type="date" name="date" id="date">
@@ -24,8 +23,8 @@ $receipts = $pdo->query('SELECT * FROM receipts WHERE product_id = ' . $product_
     <input type="number" name="quantity" id="quantity">
     <p></p>
     <select name="product">
-        <?php foreach ($receipts as $receipt): ?>
-
+        <?php foreach ($product as $prod):?>
+        <option value="<?=$prod['id']?>"><?=$prod['name']?></option>
         <?php endforeach; ?>
     </select>
     <input type="submit" name="Отправить" id="btn">

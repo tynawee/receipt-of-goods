@@ -8,4 +8,4 @@ $product_id = $_POST['product'];
 
 $pdo->query("INSERT INTO receipts(date, quantity, product_id) VALUES ('$date', '$quantity', '$product_id')");
 
-header('Location: /admin/index.php');
+header('Location: /index.php');

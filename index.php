@@ -2,6 +2,8 @@
 /** @var PDO $pdo */
 $pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
 $product = $pdo->query('SELECT * FROM product')->fetchAll(PDO::FETCH_ASSOC);
+$receipts = $pdo->query('SELECT * FROM receipts')->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,14 +16,14 @@ $product = $pdo->query('SELECT * FROM product')->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<h1>Категории</h1>
+<h1>Товары</h1>
 <table>
     <thead>
     <tr>
         <td>№</td>
-        <td>Name</td>
-        <td>Price</td>
-        <td>Article</td>
+        <td>Товар</td>
+        <td>Цена</td>
+        <td>Артикул</td>
     </tr>
     </thead>
     <tbody>
@@ -31,13 +33,13 @@ $product = $pdo->query('SELECT * FROM product')->fetchAll(PDO::FETCH_ASSOC);
             <td><?=$prod['name']?></td>
             <td><?=$prod['price']?></td>
             <td><?=$prod['article']?></td>
-            <td><a href="admin/index.php?id=<?=$prod['id']?>">Информация о поступлении</a></td>
+            <td><a href="/admin/index.php?id=<?=$prod['id']?>">Информация о поступлении</a></td>
         </tr>
     <?php endforeach;?>
     </tbody>
 </table>
 <p></p>
-<a href="admin/create.php"><button>Добавить</button></a>
+<a href="/admin/product/create.php"><button>Добавить</button></a>
 </table>
 </body>
 </html>
