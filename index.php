@@ -2,8 +2,6 @@
 /** @var PDO $pdo */
 $pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
 $product = $pdo->query('SELECT * FROM product')->fetchAll(PDO::FETCH_ASSOC);
-$receipts = $pdo->query('SELECT * FROM receipts')->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,31 +13,9 @@ $receipts = $pdo->query('SELECT * FROM receipts')->fetchAll(PDO::FETCH_ASSOC);
     <title>Document</title>
 </head>
 <body>
-
-<h1>Товары</h1>
-<table>
-    <thead>
-    <tr>
-        <td>№</td>
-        <td>Товар</td>
-        <td>Цена</td>
-        <td>Артикул</td>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($product as $prod): ?>
-        <tr>
-            <td><?=$prod['id']?></td>
-            <td><?=$prod['name']?></td>
-            <td><?=$prod['price']?></td>
-            <td><?=$prod['article']?></td>
-            <td><a href="/admin/index.php?id=<?=$prod['id']?>">Информация о поступлении</a></td>
-        </tr>
-    <?php endforeach;?>
-    </tbody>
-</table>
-<p></p>
-<a href="/admin/product/create.php"><button>Добавить</button></a>
-</table>
+<br>
+<a href="/products"><button>Таблица товаров</button></a>
+<br>
+<a href="/list.php"><button>Список товаров</button></a>
 </body>
 </html>
